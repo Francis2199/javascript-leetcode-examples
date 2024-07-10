@@ -1,20 +1,20 @@
 let numberArray = [1, 2, [2, 2, 3, 6, [4, 5]]];
-function flattingArray() {
-  for (let i = 0; i < numberArray.length; i++) {
-    const element = numberArray[i];
-    // console.log(element);
-    for (let j = 0; j < element.length; j++) {
-      const element1 = element[j];
-      //   console.log(element1);
-      for (let index = 0; index < element1.length; index++) {
-        const element2 = element1[index];
-        // console.log(element2);
-        console.log(element, element1, element2);
-      }
+const outputArray = [];
+function flatArray() {
+  flattenInnerArray(numberArray);
+  console.log(outputArray);
+}
+flatArray();
+
+function flattenInnerArray(innerArray) {
+  for (let count = 0; count < innerArray.length; count++) {
+    if (typeof innerArray[count] === "number") {
+      outputArray.push(innerArray[count]);
+    } else {
+      flattenInnerArray(innerArray[count]);
     }
   }
 }
-flattingArray();
 
 // let numberArray1 = [1, 2, [2, 2, 3, 6, [4, 5]]];
 // function flattingNewArray() {

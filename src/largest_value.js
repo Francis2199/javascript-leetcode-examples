@@ -1,10 +1,9 @@
 function thirdLargestValue() {
-  Array = [10, 3, 30, 60, 300];
-  let arrVal = Array.sort((a, b) => {
+  const inputArray = [10, 3, 30, 60, 300, 54, 92, 67, 87, 97];
+  let sortedValue = inputArray.sort((a, b) => {
     return b - a;
   });
-  // console.log(arrVal);
-  let maximumThirdValue = `Largest third value: ${arrVal[arrVal.length - 3]}`;
-  console.log(maximumThirdValue);
+  let maximumThirdValue = `Third  largest value: ${sortedValue[2]}`;
+  console.log(sortedValue, maximumThirdValue);
 }
 thirdLargestValue();

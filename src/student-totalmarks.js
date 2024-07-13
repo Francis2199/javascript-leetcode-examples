@@ -1,66 +1,65 @@
 const studentMarks = [
-  { name: "Ganapathy", mark1: 67, mark2: 67, mark3: 35, mark5: 70 },
-  { name: "test", mark1: 78, mark2: 78, mark3: 89, mark5: 70 },
-  { name: "dummy", mark1: 99, mark2: 54, mark3: 90, mark5: 70 },
-  { name: "3434", mark1: 99, mark2: 99, mark3: 99, mark5: 39 },
+  { name: "Ganapathy", mark1: 67, mark2: 67, mark3: 78, mark4: 70 },
+  { name: "test", mark1: 78, mark2: 78, mark3: 89, mark4: 70 },
+  { name: "dummy", mark1: 99, mark2: 54, mark3: 90, mark4: 70 },
+  { name: "3434", mark1: 99, mark2: 99, mark3: 99, mark4: 39 },
 ];
-let pass = 0;
-let fail = 0;
-function updateDetails(details) {
-  for (let index = 0; index < details.length; index++) {
-    let element = details[index].mark1;
-    let element1 = details[index].mark2;
-    let element2 = details[index].mark3;
-    let element3 = details[index].mark5;
-    let studentTotal = element + element1 + element2 + element3;
-    console.log(element, element1, element2, element3);
-    console.log(studentTotal);
-    if (element < 40 || element1 < 40 || element2 < 40 || element3 < 40) {
-      console.log(
-        details[index].name,
-        ":",
-        "fail",
-        "----",
-        (fail += 1),
-        "----",
-        studentTotal / 4
-      );
-    } else if (
-      element > 40 ||
-      element1 > 40 ||
-      element2 > 40 ||
-      element3 > 40
-    ) {
-      console.log(
-        details[index].name,
-        ":",
-        "pass",
-        "----",
-        (pass += 1),
-        "----",
-        studentTotal / 4
-      );
+
+let passedMembers = 0;
+let failedMembers = 0;
+
+function getTotalSubjects() {
+  for (let count = 1; count < 10; count++) {
+    if (!studentMarks["mark" + count]) {
+      return count - 1;
     }
   }
-  console.log("===>", pass, "===>", fail);
+}
+
+function updateDetails(details) {
+  for (let index = 0; index < details.length; index++) {
+    let mark1 = details[index].mark1;
+    let mark2 = details[index].mark2;
+    let mark3 = details[index].mark3;
+    let mark4 = details[index].mark4;
+    let studentTotal = mark1 + mark2 + mark3 + mark4;
+    details[index].total = studentTotal;
+    details[index].percentage = studentTotal / getTotalSubjects();
+
+    if (mark1 < 40 || mark2 < 40 || mark3 < 40 || mark4 < 40) {
+      failedMembers += 1;
+      console.log("Name: " + details[index].name, "Result: FAIL");
+    } else if (mark1 > 40 || mark2 > 40 || mark3 > 40 || mark4 > 40) {
+      passedMembers += 1;
+      console.log("Name: " + details[index].name, "Result: PASS");
+    }
+    console.log(details[index]);
+  }
+  console.log(
+    "Passed members - ",
+    passedMembers,
+    "Failed members - ",
+    failedMembers
+  );
+  console.log("Pass % - " + (passedMembers / studentMarks.length) * 100 + "%");
 }
 updateDetails(studentMarks);
 
 // const studentMarks = [
-//   { name: "Ganapathy", mark1: 67, mark2: 67, mark3: 35, mark5: 70 },
-//   { name: "test", mark1: 78, mark2: 78, mark3: 89, mark5: 70 },
-//   { name: "dummy", mark1: 99, mark2: 54, mark3: 90, mark5: 70 },
-//   { name: "3434", mark1: 99, mark2: 99, mark3: 99, mark5: 39 },
+//   { name: "Ganapathy", mark1: 67, mark2: 67, mark3: 35, mark4: 70 },
+//   { name: "test", mark1: 78, mark2: 78, mark3: 89, mark4: 70 },
+//   { name: "dummy", mark1: 99, mark2: 54, mark3: 90, mark4: 70 },
+//   { name: "3434", mark1: 99, mark2: 99, mark3: 99, mark4: 39 },
 // ];
 // function totalMark() {
 //   for (let i = 0; i < studentMarks.length; i++) {
-//     const element =
+//     const mark1 =
 //       studentMarks[i].mark1 +
 //       studentMarks[i].mark2 +
 //       studentMarks[i].mark3 +
-//       studentMarks[i].mark5;
-//     console.log(studentMarks[i].name, ":", element);
-//     // if (element) {
+//       studentMarks[i].mark4;
+//     console.log(studentMarks[i].name, ":", mark1);
+//     // if (mark1) {
 //     // }
 //   }
 // }
@@ -68,7 +67,7 @@ updateDetails(studentMarks);
 // console.log("-----------------------------------");
 // let mappedTotalMark = studentMarks.map((value, index, array) => {
 //   //   console.log(value);
-//   let studentTotalMark = value.mark1 + value.mark2 + value.mark3 + value.mark5;
+//   let studentTotalMark = value.mark1 + value.mark2 + value.mark3 + value.mark4;
 //   console.log(value.name, ":", studentTotalMark);
 // });
 
@@ -91,17 +90,17 @@ updateDetails(studentMarks);
 // // Calculate total marks for each student and add it to the object
 // let mappedTotalMark = studentMarks.map((value, index, array) => {
 //   //   console.log(value);
-//   let studentTotalMark = value.mark1 + value.mark2 + value.mark3 + value.mark5;
+//   let studentTotalMark = value.mark1 + value.mark2 + value.mark3 + value.mark4;
 //   console.log(value.name, ":", studentTotalMark);
 // });
 
-// // Determine pass or fail (assuming pass if total marks >= 150)
+// // Determine passedMembers or failedMembers (assuming passedMembers if total marks >= 150)
 // let filteredMark = studentMarks.filter((value, index) => {
 //   return mappedTotalMark >= 150 ? "Pass" : "Fail";
 // });
 // console.log(value);
 
-// Calculate pass percentage
+// Calculate passedMembers percentage
 // const totalStudents = studentMarks.length;
 // const passedStudents = studentMarks.filter(
 //   (student) => student.passed === "Pass"

@@ -1,10 +1,14 @@
-let number = 5;
-let factorialNumberValue = 1;
-function factorialNumber() {
-  for (let index = 1; index <= number; index++) {
-    // console.log(index);
-    factorialNumberValue = factorialNumberValue * index;
+function factorialNumber(input) {
+  if (typeof input === "number") {
+    let factorialNumberValue = 1;
+    for (let index = 1; index <= input; index++) {
+      factorialNumberValue = factorialNumberValue * index;
+    }
+    console.log(factorialNumberValue);
+  } else {
+    console.log("Entered input is not a number. Please enter a number!");
   }
-  console.log(factorialNumberValue);
 }
-factorialNumber();
+
+factorialNumber(5);
+factorialNumber("A");

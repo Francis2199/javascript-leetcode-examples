@@ -1,9 +1,11 @@
 let numberArray = [1, 2, [2, 2, 3, 6, [4, 5]]];
 const outputArray = [];
+
 function flatArray() {
   flattenInnerArray(numberArray);
   console.log(outputArray);
 }
+
 flatArray();
 
 function flattenInnerArray(innerArray) {
@@ -15,10 +17,3 @@ function flattenInnerArray(innerArray) {
     }
   }
 }
-
-// let numberArray1 = [1, 2, [2, 2, 3, 6, [4, 5]]];
-// function flattingNewArray() {
-//   let newArray = numberArray1.flat(2);
-//   console.log(newArray);
-// }
-// flattingNewArray();
